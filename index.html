@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Disk Scheduling Simulator</title>
+    <meta name="description" content="A visual simulator for disk scheduling algorithms including FCFS, SSTF, SCAN, and C-SCAN.">
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts for modern typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chart.js for data visualization -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1>Disk Scheduling Simulator</h1>
+            <p>Visualize & Compare FCFS, SSTF, SCAN, and C-SCAN</p>
+        </header>
+
+        <main class="dashboard">
+            <aside class="control-panel glass-panel">
+                <h2>Simulation Parameters</h2>
+                <form id="simulatorForm">
+                    <div class="input-group">
+                        <label for="requests">Track Requests (comma separated)</label>
+                        <input type="text" id="requests" name="requests" placeholder="e.g. 98, 183, 37, 122, 14" value="82, 170, 43, 140, 24, 16, 190" required>
+                    </div>
+                    
+                    <div class="input-group-row">
+                        <div class="input-group">
+                            <label for="initialPos">Initial Head</label>
+                            <input type="number" id="initialPos" name="initialPos" min="0" value="50" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="maxCylinders">Max Cylinders</label>
+                            <input type="number" id="maxCylinders" name="maxCylinders" min="1" value="199" required>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="direction">Initial Direction</label>
+                        <select id="direction" name="direction">
+                            <option value="right">Right (Towards Max)</option>
+                            <option value="left">Left (Towards 0)</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group algorithms-selection">
+                        <label>Algorithms</label>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" value="FCFS" checked> FCFS</label>
+                            <label><input type="checkbox" value="SSTF" checked> SSTF</label>
+                            <label><input type="checkbox" value="SCAN" checked> SCAN</label>
+                            <label><input type="checkbox" value="CSCAN" checked> C-SCAN</label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-primary" id="btnSimulate">Run Simulation</button>
+                </form>
+            </aside>
+
+            <section class="visualization-area">
+                <div class="chart-container glass-panel">
+                    <h2>Trajectory Visualization</h2>
+                    <canvas id="trajectoryChart"></canvas>
+                </div>
+
+                <div class="metrics-container glass-panel">
+                    <h2>Performance Metrics</h2>
+                    <div id="metricsOutput" class="metrics-grid">
+                        <div class="metrics-placeholder">Run the simulation to view results.</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
